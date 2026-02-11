@@ -16,262 +16,345 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 包豪斯设计风格 - 强化版CSS
+# Apple风格设计 - 墨绿色主题
 st.markdown("""
 <style>
-    /* ============ 主色系：墨绿色 ============ */
+    /* ============ 主色系：墨绿色 + Apple风格 ============ */
     :root {
         --primary-color: #1e4f4b;
         --primary-light: #2d5f5a;
         --primary-dark: #143734;
         --accent-color: #d4af37;
-        --bg-main: #fafaf8;
+        --bg-main: #f5f5f7;
         --bg-white: #ffffff;
-        --text-dark: #282828;
-        --text-light: #666666;
-        --border-color: #e0e0e0;
-        --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        --text-dark: #1d1d1f;
+        --text-medium: #424245;
+        --text-light: #86868b;
+        --border-color: #d2d2d7;
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
     }
 
-    /* ============ 全局样式 ============ */
+    /* ============ 全局样式 - Apple简洁风 ============ */
     .stApp {
         background-color: var(--bg-main) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif !important;
     }
 
     .main .block-container {
-        padding: 3rem 2rem !important;
-        max-width: 1400px !important;
+        padding: 4rem 3rem !important;
+        max-width: 1200px !important;
     }
 
-    /* ============ 侧边栏 - 墨绿色渐变 ============ */
+    /* ============ 侧边栏 - Apple精致风格 ============ */
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
-        border-right: none !important;
+        background: #ffffff !important;
+        border-right: 1px solid var(--border-color) !important;
+        padding: 2rem 0 !important;
     }
 
-    section[data-testid="stSidebar"] * {
-        color: white !important;
+    section[data-testid="stSidebar"] > div {
+        padding: 0 1.5rem !important;
+    }
+
+    /* 侧边栏标题 */
+    section[data-testid="stSidebar"] h1 {
+        color: var(--primary-color) !important;
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 0 0.5rem 0 !important;
+        letter-spacing: -0.5px !important;
     }
 
     section[data-testid="stSidebar"] .stMarkdown {
-        color: white !important;
+        color: var(--text-medium) !important;
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
     }
 
-    /* 侧边栏单选按钮 */
+    /* 侧边栏分割线 */
+    section[data-testid="stSidebar"] hr {
+        border: none !important;
+        border-top: 1px solid var(--border-color) !important;
+        margin: 1.5rem 0 !important;
+        opacity: 1 !important;
+    }
+
+    /* 侧边栏导航按钮 - Apple风格 */
+    section[data-testid="stSidebar"] [role="radiogroup"] {
+        gap: 4px !important;
+        margin: 1.5rem 0 !important;
+    }
+
     section[data-testid="stSidebar"] [role="radiogroup"] label {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        padding: 0.75rem 1rem !important;
-        margin: 0.3rem 0 !important;
-        border-radius: 4px !important;
-        border-left: 3px solid transparent !important;
-        transition: all 0.2s ease !important;
+        background-color: transparent !important;
+        color: var(--text-dark) !important;
+        padding: 0.875rem 1rem !important;
+        margin: 0 !important;
+        border-radius: 12px !important;
+        border: none !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer !important;
     }
 
     section[data-testid="stSidebar"] [role="radiogroup"] label:hover {
-        background-color: rgba(255, 255, 255, 0.2) !important;
-        border-left-color: var(--accent-color) !important;
-        transform: translateX(4px) !important;
+        background-color: rgba(30, 79, 75, 0.08) !important;
+        transform: translateX(2px) !important;
     }
 
     section[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"] {
-        background-color: rgba(212, 175, 55, 0.3) !important;
-        border-left-color: var(--accent-color) !important;
+        background-color: var(--primary-color) !important;
+        color: white !important;
         font-weight: 600 !important;
+        box-shadow: 0 2px 8px rgba(30, 79, 75, 0.3) !important;
     }
 
-    /* ============ 标题 - 包豪斯风格 ============ */
+    /* 侧边栏info框 - Apple卡片风格 */
+    section[data-testid="stSidebar"] .stAlert {
+        background-color: rgba(30, 79, 75, 0.06) !important;
+        border: 1px solid rgba(30, 79, 75, 0.15) !important;
+        border-radius: 12px !important;
+        padding: 1.25rem !important;
+        border-left: none !important;
+        color: var(--text-dark) !important;
+    }
+
+    section[data-testid="stSidebar"] .stAlert p,
+    section[data-testid="stSidebar"] .stAlert li,
+    section[data-testid="stSidebar"] .stAlert strong {
+        color: var(--text-dark) !important;
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* 侧边栏底部文字 */
+    section[data-testid="stSidebar"] .stCaption {
+        color: var(--text-light) !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* ============ 标题 - Apple简洁风 ============ */
     h1 {
-        color: var(--primary-color) !important;
+        color: var(--text-dark) !important;
         font-weight: 700 !important;
-        letter-spacing: -0.5px !important;
-        border-left: 8px solid var(--accent-color) !important;
-        padding-left: 1.5rem !important;
-        margin: 0 0 3rem 0 !important;
-        line-height: 1.2 !important;
+        font-size: 3rem !important;
+        letter-spacing: -1.5px !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 0 1rem 0 !important;
+        line-height: 1.1 !important;
     }
 
     h2 {
-        color: var(--primary-dark) !important;
+        color: var(--text-dark) !important;
         font-weight: 600 !important;
-        margin: 2rem 0 1rem 0 !important;
-        padding-bottom: 0.5rem !important;
-        border-bottom: 2px solid var(--border-color) !important;
+        font-size: 1.75rem !important;
+        margin: 3rem 0 1.5rem 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        letter-spacing: -0.5px !important;
     }
 
     h3 {
-        color: var(--primary-color) !important;
+        color: var(--text-medium) !important;
         font-weight: 600 !important;
-        margin: 1.5rem 0 1rem 0 !important;
+        font-size: 1.25rem !important;
+        margin: 2rem 0 1rem 0 !important;
     }
 
-    /* ============ 指标卡片 - 几何设计 ============ */
+    /* ============ 指标卡片 - Apple卡片风格 ============ */
     [data-testid="stMetric"] {
         background: var(--bg-white) !important;
-        padding: 1.8rem 1.5rem !important;
-        border-radius: 0 !important;
-        border-left: 5px solid var(--primary-color) !important;
-        box-shadow: var(--shadow) !important;
-        transition: transform 0.2s ease !important;
+        padding: 2rem 1.75rem !important;
+        border-radius: 16px !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: var(--shadow-sm) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     [data-testid="stMetric"]:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        transform: translateY(-4px) !important;
+        box-shadow: var(--shadow-md) !important;
     }
 
     [data-testid="stMetricValue"] {
-        font-size: 2.2rem !important;
+        font-size: 2.5rem !important;
         font-weight: 700 !important;
         color: var(--primary-color) !important;
+        letter-spacing: -1px !important;
     }
 
     [data-testid="stMetricLabel"] {
-        font-size: 0.9rem !important;
+        font-size: 0.875rem !important;
         color: var(--text-light) !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 0.5rem !important;
     }
 
-    /* ============ 按钮 - 包豪斯几何 ============ */
+    /* ============ 按钮 - Apple风格 ============ */
     .stButton > button {
         background-color: var(--primary-color) !important;
         color: white !important;
         border: none !important;
-        border-radius: 0 !important;
-        padding: 0.75rem 2rem !important;
+        border-radius: 12px !important;
+        padding: 0.875rem 1.75rem !important;
         font-weight: 600 !important;
-        letter-spacing: 0.5px !important;
-        text-transform: uppercase !important;
-        font-size: 0.85rem !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 2px 4px rgba(30, 79, 75, 0.3) !important;
+        font-size: 1rem !important;
+        letter-spacing: -0.2px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 2px 8px rgba(30, 79, 75, 0.25) !important;
     }
 
     .stButton > button:hover {
         background-color: var(--primary-light) !important;
-        box-shadow: 0 4px 8px rgba(30, 79, 75, 0.4) !important;
+        box-shadow: 0 4px 16px rgba(30, 79, 75, 0.35) !important;
         transform: translateY(-2px) !important;
+    }
+
+    .stButton > button:active {
+        transform: translateY(0) !important;
     }
 
     .stButton > button[kind="primary"] {
         background-color: var(--accent-color) !important;
-        color: var(--text-dark) !important;
+        color: white !important;
     }
 
     .stButton > button[kind="primary"]:hover {
         background-color: #c9a532 !important;
     }
 
-    /* ============ 输入框 ============ */
+    /* ============ 输入框 - Apple精致 ============ */
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
     .stSelectbox > div > div,
     .stMultiSelect > div > div {
-        border: 2px solid var(--border-color) !important;
-        border-radius: 0 !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 10px !important;
         background-color: var(--bg-white) !important;
-        transition: border-color 0.2s ease !important;
+        padding: 0.875rem 1rem !important;
+        font-size: 1rem !important;
+        transition: all 0.2s ease !important;
     }
 
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
         border-color: var(--primary-color) !important;
-        box-shadow: 0 0 0 2px rgba(30, 79, 75, 0.1) !important;
+        box-shadow: 0 0 0 3px rgba(30, 79, 75, 0.1) !important;
+        outline: none !important;
     }
 
-    /* ============ Expander - 手风琴 ============ */
+    /* ============ Expander - Apple折叠面板 ============ */
     .streamlit-expanderHeader {
         background-color: var(--bg-white) !important;
-        border: none !important;
-        border-left: 4px solid var(--primary-color) !important;
-        border-radius: 0 !important;
-        padding: 1.2rem 1.5rem !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
+        padding: 1.25rem 1.5rem !important;
         font-weight: 600 !important;
-        color: var(--primary-dark) !important;
-        box-shadow: var(--shadow) !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1rem !important;
+        color: var(--text-dark) !important;
+        box-shadow: var(--shadow-sm) !important;
+        margin-bottom: 0.75rem !important;
+        transition: all 0.2s ease !important;
     }
 
     .streamlit-expanderHeader:hover {
-        background-color: #f5f5f5 !important;
+        background-color: #fafafa !important;
+        box-shadow: var(--shadow-md) !important;
     }
 
     .streamlit-expanderContent {
         background-color: var(--bg-white) !important;
-        border: none !important;
-        border-left: 4px solid var(--border-color) !important;
-        padding: 1.5rem !important;
-        box-shadow: var(--shadow) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
+        padding: 1.75rem !important;
+        margin-top: -0.5rem !important;
+        box-shadow: var(--shadow-sm) !important;
     }
 
-    /* ============ 表格 ============ */
+    /* ============ 表格 - Apple风格 ============ */
     [data-testid="stDataFrame"],
     .dataframe {
-        border: 2px solid var(--border-color) !important;
-        border-radius: 0 !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
         overflow: hidden !important;
+        box-shadow: var(--shadow-sm) !important;
     }
 
-    /* ============ Alert框 ============ */
+    /* ============ Alert框 - Apple提示框 ============ */
     .stAlert {
-        border-radius: 0 !important;
-        border-left: 6px solid !important;
-        padding: 1rem 1.5rem !important;
+        border-radius: 12px !important;
+        border: 1px solid !important;
+        padding: 1.25rem 1.5rem !important;
         background-color: var(--bg-white) !important;
+        box-shadow: var(--shadow-sm) !important;
     }
 
     /* ============ 分割线 ============ */
     hr {
         border: none !important;
-        border-top: 3px solid var(--primary-color) !important;
+        border-top: 1px solid var(--border-color) !important;
         margin: 3rem 0 !important;
-        opacity: 0.3 !important;
+        opacity: 1 !important;
     }
 
-    /* ============ Tabs ============ */
+    /* ============ Tabs - Apple标签页 ============ */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 0 !important;
+        gap: 8px !important;
         background-color: transparent !important;
-        border-bottom: 3px solid var(--border-color) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding-bottom: 0 !important;
     }
 
     .stTabs [data-baseweb="tab"] {
         background-color: transparent !important;
-        border-radius: 0 !important;
-        padding: 1rem 2rem !important;
-        font-weight: 600 !important;
+        border-radius: 8px 8px 0 0 !important;
+        padding: 0.875rem 1.5rem !important;
+        font-weight: 500 !important;
+        font-size: 1rem !important;
         color: var(--text-light) !important;
-        border-bottom: 3px solid transparent !important;
-        margin-bottom: -3px !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
-        font-size: 0.9rem !important;
+        border: none !important;
+        transition: all 0.2s ease !important;
     }
 
     .stTabs [data-baseweb="tab"]:hover {
         color: var(--primary-color) !important;
+        background-color: rgba(30, 79, 75, 0.05) !important;
     }
 
     .stTabs [aria-selected="true"] {
         background-color: transparent !important;
-        border-bottom: 3px solid var(--primary-color) !important;
         color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        border-bottom: 3px solid var(--primary-color) !important;
+        margin-bottom: -1px !important;
     }
 
-    /* ============ 图表 ============ */
+    /* ============ 图表 - Apple卡片 ============ */
     [data-testid="stPlotlyChart"] > div {
         background-color: var(--bg-white) !important;
-        padding: 1.5rem !important;
-        border: 2px solid var(--border-color) !important;
-        box-shadow: var(--shadow) !important;
+        padding: 2rem !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 16px !important;
+        box-shadow: var(--shadow-sm) !important;
     }
 
     /* ============ 隐藏Streamlit水印 ============ */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+
+    /* ============ 段落文字 - Apple排版 ============ */
+    p {
+        color: var(--text-medium) !important;
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
