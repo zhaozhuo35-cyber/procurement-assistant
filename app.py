@@ -19,17 +19,17 @@ st.set_page_config(
 # Apple风格设计 - 墨绿色主题
 st.markdown("""
 <style>
-    /* ============ 主色系：墨绿色 + Apple风格 ============ */
+    /* ============ 主色系：墨绿色 + Apple风格 + 高对比度 ============ */
     :root {
         --primary-color: #1e4f4b;
         --primary-light: #2d5f5a;
-        --primary-dark: #143734;
+        --primary-dark: #0f2a28;
         --accent-color: #d4af37;
-        --bg-main: #f5f5f7;
+        --bg-main: #fafafa;
         --bg-white: #ffffff;
-        --text-dark: #1d1d1f;
-        --text-medium: #424245;
-        --text-light: #86868b;
+        --text-dark: #000000;
+        --text-medium: #1d1d1f;
+        --text-light: #6e6e73;
         --border-color: #d2d2d7;
         --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
         --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
@@ -137,63 +137,68 @@ st.markdown("""
         font-size: 0.75rem !important;
     }
 
-    /* ============ 标题 - Apple简洁风 ============ */
+    /* ============ 标题 - Apple简洁风 + 高对比度 ============ */
     h1 {
         color: var(--text-dark) !important;
         font-weight: 700 !important;
-        font-size: 3rem !important;
-        letter-spacing: -1.5px !important;
+        font-size: 3.5rem !important;
+        letter-spacing: -2px !important;
         border: none !important;
         padding: 0 !important;
-        margin: 0 0 1rem 0 !important;
-        line-height: 1.1 !important;
+        margin: 0 0 1.5rem 0 !important;
+        line-height: 1.05 !important;
     }
 
     h2 {
         color: var(--text-dark) !important;
         font-weight: 600 !important;
-        font-size: 1.75rem !important;
+        font-size: 2rem !important;
         margin: 3rem 0 1.5rem 0 !important;
         padding: 0 !important;
         border: none !important;
-        letter-spacing: -0.5px !important;
+        letter-spacing: -0.8px !important;
     }
 
     h3 {
-        color: var(--text-medium) !important;
+        color: var(--text-dark) !important;
         font-weight: 600 !important;
-        font-size: 1.25rem !important;
+        font-size: 1.4rem !important;
         margin: 2rem 0 1rem 0 !important;
+        letter-spacing: -0.3px !important;
     }
 
-    /* ============ 指标卡片 - Apple卡片风格 ============ */
+    /* ============ 指标卡片 - Apple卡片风格 + 墨绿色背景 ============ */
     [data-testid="stMetric"] {
-        background: var(--bg-white) !important;
-        padding: 2rem 1.75rem !important;
-        border-radius: 16px !important;
-        border: 1px solid var(--border-color) !important;
-        box-shadow: var(--shadow-sm) !important;
+        background: var(--primary-color) !important;
+        padding: 2.5rem 2rem !important;
+        border-radius: 18px !important;
+        border: none !important;
+        box-shadow: 0 4px 20px rgba(30, 79, 75, 0.2) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     [data-testid="stMetric"]:hover {
-        transform: translateY(-4px) !important;
-        box-shadow: var(--shadow-md) !important;
+        transform: translateY(-6px) !important;
+        box-shadow: 0 8px 30px rgba(30, 79, 75, 0.3) !important;
     }
 
     [data-testid="stMetricValue"] {
-        font-size: 2.5rem !important;
+        font-size: 3rem !important;
         font-weight: 700 !important;
-        color: var(--primary-color) !important;
-        letter-spacing: -1px !important;
+        color: white !important;
+        letter-spacing: -2px !important;
     }
 
     [data-testid="stMetricLabel"] {
-        font-size: 0.875rem !important;
-        color: var(--text-light) !important;
+        font-size: 1rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
         font-weight: 500 !important;
-        letter-spacing: 0.5px !important;
-        margin-bottom: 0.5rem !important;
+        letter-spacing: 0.3px !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    [data-testid="stMetricDelta"] {
+        color: rgba(255, 255, 255, 0.75) !important;
     }
 
     /* ============ 按钮 - Apple风格 ============ */
@@ -349,11 +354,33 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* ============ 段落文字 - Apple排版 ============ */
+    /* ============ 段落文字 - Apple排版 + 高对比度 ============ */
     p {
         color: var(--text-medium) !important;
-        font-size: 1rem !important;
-        line-height: 1.6 !important;
+        font-size: 1.0625rem !important;
+        line-height: 1.7 !important;
+        font-weight: 400 !important;
+    }
+
+    /* markdown文字 */
+    .stMarkdown {
+        color: var(--text-medium) !important;
+    }
+
+    /* 增强所有文字对比度 */
+    .stMarkdown p,
+    .stMarkdown li,
+    .stMarkdown span {
+        color: var(--text-medium) !important;
+    }
+
+    /* 确保info/success/warning文字清晰 */
+    .stInfo, .stSuccess, .stWarning, .stError {
+        color: var(--text-dark) !important;
+    }
+
+    .stInfo *, .stSuccess *, .stWarning *, .stError * {
+        color: var(--text-dark) !important;
     }
 </style>
 """, unsafe_allow_html=True)
