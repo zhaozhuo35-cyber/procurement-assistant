@@ -16,295 +16,335 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 理想汽车品牌色彩规范设计
+# 理想汽车官网风格 - 极简高端设计
 st.markdown("""
 <style>
-    /* ============ 理想汽车品牌色彩体系 ============ */
+    /* ============ 理想汽车风格色彩体系 ============ */
     :root {
-        --li-deep-green: #002D28;        /* 深绿-生命色：安全、舒适、希望 */
-        --li-ui-green: #00726d;          /* UI深绿-仅用于高亮文字和图表 */
-        --li-warm-gold: #CEA472;         /* 暖金-情感色：温暖、灵感、有趣 */
-        --li-black: #000000;             /* 黑-底色：根基、重量感 */
-        --li-white: #FFFFFF;             /* 白-原色：简单、纯粹 */
-        --li-black-80: #333333;          /* 黑色80% */
-        --li-black-60: #666666;          /* 黑色60% */
-        --li-black-20: #CCCCCC;          /* 黑色20% */
-        --li-bg: #FAFAFA;                /* 浅灰背景 */
+        --li-deep-green: #002D28;        /* 深绿 */
+        --li-ui-green: #00726d;          /* UI深绿 */
+        --li-warm-gold: #CEA472;         /* 暖金 */
+        --li-black: #000000;
+        --li-white: #FFFFFF;
+        --li-gray-dark: #1A1A1A;         /* 深灰背景 */
+        --li-gray-medium: #2A2A2A;       /* 中灰 */
+        --li-gray-light: #3A3A3A;        /* 浅灰 */
+        --li-text-primary: #FFFFFF;      /* 主文字 */
+        --li-text-secondary: rgba(255, 255, 255, 0.7);  /* 次要文字 */
+        --li-text-hint: rgba(255, 255, 255, 0.45);      /* 提示文字 */
+        --li-bg-dark: #0A0A0A;           /* 极深背景 */
     }
 
-    /* ============ 全局样式 ============ */
+    /* ============ 全局样式 - 理想汽车极简风 ============ */
     .stApp {
-        background-color: var(--li-bg) !important;
-        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif !important;
+        background: linear-gradient(180deg, var(--li-bg-dark) 0%, var(--li-gray-dark) 100%) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif !important;
     }
 
     .main .block-container {
-        padding: 3rem 2.5rem !important;
-        max-width: 1280px !important;
+        padding: 5rem 4rem !important;
+        max-width: 1400px !important;
     }
 
-    /* ============ 侧边栏 - 深绿色主导 ============ */
+    /* ============ 侧边栏 - 极简深色 ============ */
     section[data-testid="stSidebar"] {
-        background: var(--li-deep-green) !important;
-        border-right: none !important;
-        padding: 2rem 0 !important;
+        background: var(--li-gray-dark) !important;
+        border-right: 1px solid var(--li-gray-light) !important;
+        padding: 3rem 0 !important;
     }
 
     section[data-testid="stSidebar"] > div {
-        padding: 0 1.5rem !important;
+        padding: 0 2rem !important;
     }
 
-    /* 侧边栏所有文字为白色 */
+    /* 侧边栏所有文字 */
     section[data-testid="stSidebar"] * {
-        color: var(--li-white) !important;
+        color: var(--li-text-primary) !important;
     }
 
-    /* 侧边栏标题 */
+    /* 侧边栏标题 - 超大字号 */
     section[data-testid="stSidebar"] h1 {
-        color: var(--li-white) !important;
-        font-size: 1.75rem !important;
-        font-weight: 700 !important;
+        color: var(--li-text-primary) !important;
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
         border: none !important;
         padding: 0 !important;
         margin: 0 0 0.5rem 0 !important;
+        letter-spacing: 0.5px !important;
     }
 
-    /* 侧边栏版本号 */
+    /* 侧边栏次要文字 */
     section[data-testid="stSidebar"] .stMarkdown {
-        color: rgba(255, 255, 255, 0.7) !important;
-        font-size: 0.875rem !important;
+        color: var(--li-text-secondary) !important;
+        font-size: 0.8125rem !important;
         line-height: 1.6 !important;
     }
 
     /* 侧边栏分割线 */
     section[data-testid="stSidebar"] hr {
         border: none !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-        margin: 1.5rem 0 !important;
-        opacity: 1 !important;
+        border-top: 1px solid var(--li-gray-light) !important;
+        margin: 2rem 0 !important;
+        opacity: 0.3 !important;
     }
 
-    /* 侧边栏导航按钮 - 白色功能色 */
+    /* 侧边栏导航 - 极简风格 */
     section[data-testid="stSidebar"] [role="radiogroup"] {
-        gap: 6px !important;
-        margin: 1.5rem 0 !important;
+        gap: 8px !important;
+        margin: 2rem 0 !important;
     }
 
     section[data-testid="stSidebar"] [role="radiogroup"] label {
         background-color: transparent !important;
-        color: rgba(255, 255, 255, 0.85) !important;
-        padding: 1rem 1.25rem !important;
+        color: var(--li-text-secondary) !important;
+        padding: 1.125rem 1.5rem !important;
         margin: 0 !important;
-        border-radius: 8px !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        font-size: 1rem !important;
+        border-radius: 12px !important;
+        border: 1px solid transparent !important;
+        font-size: 0.9375rem !important;
         font-weight: 500 !important;
-        transition: all 0.25s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         cursor: pointer !important;
     }
 
     section[data-testid="stSidebar"] [role="radiogroup"] label:hover {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        border-color: rgba(255, 255, 255, 0.3) !important;
+        background-color: var(--li-gray-medium) !important;
+        color: var(--li-text-primary) !important;
     }
 
     section[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"] {
-        background-color: var(--li-white) !important;
-        color: var(--li-deep-green) !important;
-        border-color: var(--li-white) !important;
+        background-color: var(--li-deep-green) !important;
+        color: var(--li-white) !important;
+        border-color: var(--li-deep-green) !important;
         font-weight: 600 !important;
     }
 
-    /* 侧边栏info框 - 使用暖金色强调 */
+    /* 侧边栏info框 */
     section[data-testid="stSidebar"] .stAlert {
-        background-color: rgba(206, 164, 114, 0.15) !important;
-        border: 1px solid rgba(206, 164, 114, 0.3) !important;
-        border-radius: 8px !important;
-        padding: 1.25rem !important;
-        border-left: 4px solid var(--li-warm-gold) !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        border-left: 3px solid var(--li-warm-gold) !important;
     }
 
     section[data-testid="stSidebar"] .stAlert * {
-        color: var(--li-white) !important;
-        font-size: 0.875rem !important;
-        line-height: 1.7 !important;
+        color: var(--li-text-secondary) !important;
+        font-size: 0.8125rem !important;
+        line-height: 1.8 !important;
     }
 
-    /* 侧边栏底部文字 */
     section[data-testid="stSidebar"] .stCaption {
-        color: rgba(255, 255, 255, 0.5) !important;
-        font-size: 0.75rem !important;
+        color: var(--li-text-hint) !important;
+        font-size: 0.6875rem !important;
     }
 
-    /* ============ 标题 - 黑色功能色 ============ */
+    /* ============ 主内容区标题 - 超大字号 ============ */
     h1 {
-        color: var(--li-black) !important;
-        font-weight: 700 !important;
-        font-size: 3rem !important;
-        letter-spacing: -1.5px !important;
+        color: var(--li-text-primary) !important;
+        font-weight: 600 !important;
+        font-size: 4rem !important;
+        letter-spacing: -2.5px !important;
         border: none !important;
         padding: 0 !important;
-        margin: 0 0 2rem 0 !important;
-        line-height: 1.15 !important;
+        margin: 0 0 3rem 0 !important;
+        line-height: 1.1 !important;
     }
 
     h2 {
-        color: var(--li-black) !important;
+        color: var(--li-text-primary) !important;
         font-weight: 600 !important;
-        font-size: 1.75rem !important;
-        margin: 2.5rem 0 1.5rem 0 !important;
+        font-size: 2.25rem !important;
+        margin: 4rem 0 2rem 0 !important;
         padding: 0 !important;
         border: none !important;
-        letter-spacing: -0.5px !important;
+        letter-spacing: -1px !important;
     }
 
     h3 {
-        color: var(--li-black-80) !important;
+        color: var(--li-text-primary) !important;
         font-weight: 600 !important;
-        font-size: 1.25rem !important;
-        margin: 2rem 0 1rem 0 !important;
+        font-size: 1.5rem !important;
+        margin: 3rem 0 1.5rem 0 !important;
+        letter-spacing: -0.5px !important;
     }
 
-    /* ============ 指标卡片 - 深绿主导+白色功能 ============ */
+    /* ============ 指标卡片 - 产品卡片风格 ============ */
     [data-testid="stMetric"] {
-        background: var(--li-deep-green) !important;
-        padding: 2.5rem 2rem !important;
-        border-radius: 12px !important;
-        border: none !important;
-        box-shadow: 0 4px 20px rgba(0, 45, 40, 0.15) !important;
-        transition: all 0.3s ease !important;
+        background: linear-gradient(135deg, var(--li-deep-green) 0%, #003832 100%) !important;
+        padding: 3rem 2.5rem !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(0, 114, 109, 0.2) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    [data-testid="stMetric"]::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -50% !important;
+        right: -50% !important;
+        width: 200% !important;
+        height: 200% !important;
+        background: radial-gradient(circle, rgba(0, 114, 109, 0.1) 0%, transparent 70%) !important;
+        opacity: 0 !important;
+        transition: opacity 0.4s ease !important;
+    }
+
+    [data-testid="stMetric"]:hover::before {
+        opacity: 1 !important;
     }
 
     [data-testid="stMetric"]:hover {
-        transform: translateY(-4px) !important;
-        box-shadow: 0 8px 30px rgba(0, 45, 40, 0.25) !important;
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important;
+        border-color: var(--li-ui-green) !important;
     }
 
     [data-testid="stMetricValue"] {
-        font-size: 3.5rem !important;
-        font-weight: 700 !important;
+        font-size: 4rem !important;
+        font-weight: 600 !important;
         color: var(--li-white) !important;
-        letter-spacing: -2px !important;
+        letter-spacing: -3px !important;
+        line-height: 1 !important;
     }
 
     [data-testid="stMetricLabel"] {
-        font-size: 1rem !important;
-        color: rgba(255, 255, 255, 0.9) !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.5px !important;
-        margin-bottom: 1rem !important;
+        font-size: 0.875rem !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        font-weight: 500 !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 1.5rem !important;
         text-transform: uppercase !important;
     }
 
     [data-testid="stMetricDelta"] {
         color: var(--li-warm-gold) !important;
         font-weight: 600 !important;
+        font-size: 0.9375rem !important;
     }
 
-    /* ============ 按钮 - 深绿+暖金强调 ============ */
+    /* ============ 按钮 - 理想汽车风格 ============ */
     .stButton > button {
         background-color: var(--li-deep-green) !important;
         color: var(--li-white) !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 1rem 2rem !important;
+        border: 1px solid var(--li-ui-green) !important;
+        border-radius: 50px !important;
+        padding: 1.125rem 2.5rem !important;
         font-weight: 600 !important;
-        font-size: 1rem !important;
-        letter-spacing: 0.3px !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 2px 12px rgba(0, 45, 40, 0.3) !important;
+        font-size: 0.9375rem !important;
+        letter-spacing: 0.5px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 16px rgba(0, 45, 40, 0.4) !important;
     }
 
     .stButton > button:hover {
         background-color: var(--li-ui-green) !important;
-        box-shadow: 0 4px 20px rgba(0, 45, 40, 0.4) !important;
+        box-shadow: 0 8px 24px rgba(0, 114, 109, 0.5) !important;
         transform: translateY(-2px) !important;
+        border-color: var(--li-warm-gold) !important;
     }
 
     .stButton > button[kind="primary"] {
-        background-color: var(--li-warm-gold) !important;
+        background: linear-gradient(135deg, var(--li-warm-gold) 0%, #B89860 100%) !important;
         color: var(--li-black) !important;
+        border-color: var(--li-warm-gold) !important;
     }
 
     .stButton > button[kind="primary"]:hover {
-        background-color: #C09760 !important;
+        background: linear-gradient(135deg, #D4B77D 0%, var(--li-warm-gold) 100%) !important;
+        box-shadow: 0 8px 24px rgba(206, 164, 114, 0.5) !important;
     }
 
-    /* ============ 输入框 ============ */
+    /* ============ 输入框 - 深色主题 ============ */
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
     .stSelectbox > div > div,
     .stMultiSelect > div > div {
-        border: 2px solid var(--li-black-20) !important;
-        border-radius: 8px !important;
-        background-color: var(--li-white) !important;
-        padding: 0.875rem 1rem !important;
-        font-size: 1rem !important;
-        color: var(--li-black) !important;
-        transition: all 0.2s ease !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 12px !important;
+        padding: 1rem 1.25rem !important;
+        font-size: 0.9375rem !important;
+        color: var(--li-text-primary) !important;
+        transition: all 0.3s ease !important;
     }
 
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
+        background-color: var(--li-gray-light) !important;
         border-color: var(--li-ui-green) !important;
-        box-shadow: 0 0 0 3px rgba(0, 114, 109, 0.1) !important;
+        box-shadow: 0 0 0 3px rgba(0, 114, 109, 0.15) !important;
         outline: none !important;
     }
 
-    /* ============ Expander ============ */
+    .stTextInput > div > div > input::placeholder,
+    .stTextArea > div > div > textarea::placeholder {
+        color: var(--li-text-hint) !important;
+    }
+
+    /* ============ Expander - 卡片式 ============ */
     .streamlit-expanderHeader {
-        background-color: var(--li-white) !important;
-        border: 1px solid var(--li-black-20) !important;
-        border-radius: 10px !important;
-        padding: 1.25rem 1.5rem !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 16px !important;
+        padding: 1.5rem 2rem !important;
         font-weight: 600 !important;
-        font-size: 1rem !important;
-        color: var(--li-black) !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
-        margin-bottom: 0.75rem !important;
-        transition: all 0.2s ease !important;
+        font-size: 1.0625rem !important;
+        color: var(--li-text-primary) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+        margin-bottom: 1rem !important;
+        transition: all 0.3s ease !important;
     }
 
     .streamlit-expanderHeader:hover {
-        background-color: #F8F8F8 !important;
+        background-color: var(--li-gray-light) !important;
         border-color: var(--li-ui-green) !important;
+        transform: translateY(-2px) !important;
     }
 
     .streamlit-expanderContent {
-        background-color: var(--li-white) !important;
-        border: 1px solid var(--li-black-20) !important;
-        border-radius: 10px !important;
-        padding: 1.75rem !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 16px !important;
+        padding: 2rem !important;
         margin-top: -0.5rem !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
     }
 
     /* ============ 表格 ============ */
     [data-testid="stDataFrame"],
     .dataframe {
-        border: 1px solid var(--li-black-20) !important;
-        border-radius: 10px !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 16px !important;
         overflow: hidden !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    [data-testid="stDataFrame"] * {
+        color: var(--li-text-primary) !important;
     }
 
     /* ============ Alert框 ============ */
     .stAlert {
-        border-radius: 10px !important;
-        border: 1px solid !important;
-        padding: 1.25rem 1.5rem !important;
-        background-color: var(--li-white) !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        background-color: var(--li-gray-medium) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 16px !important;
+        padding: 1.5rem 2rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
     }
 
     .stSuccess {
         border-left: 4px solid var(--li-ui-green) !important;
-        background-color: rgba(0, 114, 109, 0.05) !important;
+        background: linear-gradient(90deg, rgba(0, 114, 109, 0.1) 0%, var(--li-gray-medium) 10%) !important;
     }
 
     .stInfo {
         border-left: 4px solid var(--li-warm-gold) !important;
-        background-color: rgba(206, 164, 114, 0.05) !important;
+        background: linear-gradient(90deg, rgba(206, 164, 114, 0.1) 0%, var(--li-gray-medium) 10%) !important;
     }
 
     .stWarning {
@@ -315,86 +355,110 @@ st.markdown("""
         border-left: 4px solid #EF5350 !important;
     }
 
+    .stAlert * {
+        color: var(--li-text-primary) !important;
+    }
+
     /* ============ 分割线 ============ */
     hr {
         border: none !important;
-        border-top: 2px solid var(--li-black-20) !important;
-        margin: 3rem 0 !important;
-        opacity: 1 !important;
+        border-top: 1px solid var(--li-gray-light) !important;
+        margin: 4rem 0 !important;
+        opacity: 0.3 !important;
     }
 
     /* ============ Tabs ============ */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px !important;
+        gap: 1rem !important;
         background-color: transparent !important;
-        border-bottom: 2px solid var(--li-black-20) !important;
+        border-bottom: 1px solid var(--li-gray-light) !important;
         padding-bottom: 0 !important;
     }
 
     .stTabs [data-baseweb="tab"] {
         background-color: transparent !important;
-        border-radius: 8px 8px 0 0 !important;
-        padding: 1rem 2rem !important;
+        border-radius: 12px 12px 0 0 !important;
+        padding: 1.125rem 2rem !important;
         font-weight: 600 !important;
         font-size: 1rem !important;
-        color: var(--li-black-60) !important;
+        color: var(--li-text-secondary) !important;
         border: none !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.3s ease !important;
     }
 
     .stTabs [data-baseweb="tab"]:hover {
-        color: var(--li-ui-green) !important;
-        background-color: rgba(0, 114, 109, 0.05) !important;
+        color: var(--li-text-primary) !important;
+        background-color: var(--li-gray-medium) !important;
     }
 
     .stTabs [aria-selected="true"] {
         background-color: transparent !important;
-        color: var(--li-deep-green) !important;
+        color: var(--li-ui-green) !important;
         font-weight: 700 !important;
-        border-bottom: 3px solid var(--li-deep-green) !important;
-        margin-bottom: -2px !important;
+        border-bottom: 3px solid var(--li-ui-green) !important;
+        margin-bottom: -1px !important;
     }
 
     /* ============ 图表 ============ */
     [data-testid="stPlotlyChart"] > div {
-        background-color: var(--li-white) !important;
+        background-color: var(--li-gray-medium) !important;
         padding: 2rem !important;
-        border: 1px solid var(--li-black-20) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+        border: 1px solid var(--li-gray-light) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
     }
 
-    /* ============ 文字对比度 ============ */
-    p, li, span, div {
-        color: var(--li-black-80) !important;
+    /* ============ 文字样式 ============ */
+    p, li, span {
+        color: var(--li-text-secondary) !important;
         font-size: 1rem !important;
-        line-height: 1.7 !important;
+        line-height: 1.8 !important;
     }
 
     .stMarkdown {
-        color: var(--li-black-80) !important;
+        color: var(--li-text-secondary) !important;
     }
 
-    /* 强调文字使用UI深绿 */
+    /* 强调文字 */
     strong, b {
-        color: var(--li-ui-green) !important;
+        color: var(--li-text-primary) !important;
         font-weight: 600 !important;
     }
 
-    /* ============ Badge样式 ============ */
+    /* ============ Badge ============ */
     .stBadge {
         background-color: var(--li-deep-green) !important;
         color: var(--li-white) !important;
-        padding: 0.25rem 0.75rem !important;
-        border-radius: 4px !important;
-        font-size: 0.875rem !important;
+        padding: 0.375rem 1rem !important;
+        border-radius: 20px !important;
+        font-size: 0.8125rem !important;
         font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
     }
 
-    /* ============ 隐藏Streamlit水印 ============ */
+    /* ============ 隐藏水印 ============ */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+
+    /* ============ 滚动条样式 ============ */
+    ::-webkit-scrollbar {
+        width: 8px !important;
+        height: 8px !important;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--li-gray-dark) !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--li-gray-light) !important;
+        border-radius: 4px !important;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--li-ui-green) !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
