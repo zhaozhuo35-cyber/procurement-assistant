@@ -16,198 +16,262 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 包豪斯设计风格 - 自定义CSS
+# 包豪斯设计风格 - 强化版CSS
 st.markdown("""
 <style>
-    /* 主色系：墨绿色 RGB(30, 79, 75) */
+    /* ============ 主色系：墨绿色 ============ */
     :root {
-        --primary-color: rgb(30, 79, 75);
-        --primary-light: rgb(45, 95, 90);
-        --primary-dark: rgb(20, 55, 52);
-        --accent-color: rgb(212, 175, 55);
-        --bg-light: rgb(250, 250, 248);
-        --text-dark: rgb(40, 40, 40);
-        --border-color: rgb(200, 200, 200);
+        --primary-color: #1e4f4b;
+        --primary-light: #2d5f5a;
+        --primary-dark: #143734;
+        --accent-color: #d4af37;
+        --bg-main: #fafaf8;
+        --bg-white: #ffffff;
+        --text-dark: #282828;
+        --text-light: #666666;
+        --border-color: #e0e0e0;
+        --shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    /* 包豪斯风格：几何形状、清晰层次 */
+    /* ============ 全局样式 ============ */
     .stApp {
-        background-color: var(--bg-light);
+        background-color: var(--bg-main) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
     }
 
-    /* 侧边栏样式 */
-    [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    .main .block-container {
+        padding: 3rem 2rem !important;
+        max-width: 1400px !important;
     }
 
-    [data-testid="stSidebar"] * {
+    /* ============ 侧边栏 - 墨绿色渐变 ============ */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+        border-right: none !important;
+    }
+
+    section[data-testid="stSidebar"] * {
         color: white !important;
     }
 
-    [data-testid="stSidebar"] .stRadio > label {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 0.5rem;
-        border-radius: 2px;
-        margin: 0.2rem 0;
-        transition: all 0.2s;
+    section[data-testid="stSidebar"] .stMarkdown {
+        color: white !important;
     }
 
-    [data-testid="stSidebar"] .stRadio > label:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        transform: translateX(4px);
+    /* 侧边栏单选按钮 */
+    section[data-testid="stSidebar"] [role="radiogroup"] label {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.3rem 0 !important;
+        border-radius: 4px !important;
+        border-left: 3px solid transparent !important;
+        transition: all 0.2s ease !important;
     }
 
-    /* 标题样式 - 包豪斯字体 */
+    section[data-testid="stSidebar"] [role="radiogroup"] label:hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-left-color: var(--accent-color) !important;
+        transform: translateX(4px) !important;
+    }
+
+    section[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"] {
+        background-color: rgba(212, 175, 55, 0.3) !important;
+        border-left-color: var(--accent-color) !important;
+        font-weight: 600 !important;
+    }
+
+    /* ============ 标题 - 包豪斯风格 ============ */
     h1 {
-        font-family: 'Arial', sans-serif;
-        font-weight: 700;
-        letter-spacing: -1px;
-        color: var(--primary-color);
-        border-left: 6px solid var(--accent-color);
-        padding-left: 1rem;
-        margin-bottom: 2rem;
+        color: var(--primary-color) !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.5px !important;
+        border-left: 8px solid var(--accent-color) !important;
+        padding-left: 1.5rem !important;
+        margin: 0 0 3rem 0 !important;
+        line-height: 1.2 !important;
     }
 
-    h2, h3 {
-        font-family: 'Arial', sans-serif;
-        font-weight: 600;
-        color: var(--primary-dark);
+    h2 {
+        color: var(--primary-dark) !important;
+        font-weight: 600 !important;
+        margin: 2rem 0 1rem 0 !important;
+        padding-bottom: 0.5rem !important;
+        border-bottom: 2px solid var(--border-color) !important;
     }
 
-    /* 卡片样式 - 几何形状 */
-    [data-testid="stMetricValue"] {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-color);
+    h3 {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        margin: 1.5rem 0 1rem 0 !important;
     }
 
+    /* ============ 指标卡片 - 几何设计 ============ */
     [data-testid="stMetric"] {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 2px;
-        border-left: 4px solid var(--primary-color);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        background: var(--bg-white) !important;
+        padding: 1.8rem 1.5rem !important;
+        border-radius: 0 !important;
+        border-left: 5px solid var(--primary-color) !important;
+        box-shadow: var(--shadow) !important;
+        transition: transform 0.2s ease !important;
     }
 
-    /* 按钮样式 - 简洁几何 */
+    [data-testid="stMetric"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 2.2rem !important;
+        font-weight: 700 !important;
+        color: var(--primary-color) !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        font-size: 0.9rem !important;
+        color: var(--text-light) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        font-weight: 600 !important;
+    }
+
+    /* ============ 按钮 - 包豪斯几何 ============ */
     .stButton > button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 2px;
-        padding: 0.6rem 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.2s;
-        box-shadow: 0 2px 4px rgba(30, 79, 75, 0.3);
+        background-color: var(--primary-color) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0.75rem 2rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        text-transform: uppercase !important;
+        font-size: 0.85rem !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 2px 4px rgba(30, 79, 75, 0.3) !important;
     }
 
     .stButton > button:hover {
-        background-color: var(--primary-light);
-        box-shadow: 0 4px 8px rgba(30, 79, 75, 0.4);
-        transform: translateY(-1px);
+        background-color: var(--primary-light) !important;
+        box-shadow: 0 4px 8px rgba(30, 79, 75, 0.4) !important;
+        transform: translateY(-2px) !important;
     }
 
     .stButton > button[kind="primary"] {
-        background-color: var(--accent-color);
-        color: var(--text-dark);
+        background-color: var(--accent-color) !important;
+        color: var(--text-dark) !important;
     }
 
-    /* 输入框样式 */
+    .stButton > button[kind="primary"]:hover {
+        background-color: #c9a532 !important;
+    }
+
+    /* ============ 输入框 ============ */
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
-    .stSelectbox > div > div > select {
-        border: 2px solid var(--border-color);
-        border-radius: 2px;
-        padding: 0.6rem;
-        transition: border-color 0.2s;
+    .stSelectbox > div > div,
+    .stMultiSelect > div > div {
+        border: 2px solid var(--border-color) !important;
+        border-radius: 0 !important;
+        background-color: var(--bg-white) !important;
+        transition: border-color 0.2s ease !important;
     }
 
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
-        border-color: var(--primary-color);
-        outline: none;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 2px rgba(30, 79, 75, 0.1) !important;
     }
 
-    /* Expander样式 - 网格系统 */
+    /* ============ Expander - 手风琴 ============ */
     .streamlit-expanderHeader {
-        background-color: white;
-        border-left: 4px solid var(--primary-color);
-        border-radius: 2px;
-        padding: 1rem;
-        font-weight: 600;
-        color: var(--primary-dark);
+        background-color: var(--bg-white) !important;
+        border: none !important;
+        border-left: 4px solid var(--primary-color) !important;
+        border-radius: 0 !important;
+        padding: 1.2rem 1.5rem !important;
+        font-weight: 600 !important;
+        color: var(--primary-dark) !important;
+        box-shadow: var(--shadow) !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .streamlit-expanderHeader:hover {
+        background-color: #f5f5f5 !important;
     }
 
     .streamlit-expanderContent {
-        background-color: white;
-        border-left: 4px solid var(--border-color);
-        padding: 1rem;
+        background-color: var(--bg-white) !important;
+        border: none !important;
+        border-left: 4px solid var(--border-color) !important;
+        padding: 1.5rem !important;
+        box-shadow: var(--shadow) !important;
     }
 
-    /* 数据表格样式 */
-    [data-testid="stDataFrame"] {
-        border: 2px solid var(--border-color);
-        border-radius: 2px;
+    /* ============ 表格 ============ */
+    [data-testid="stDataFrame"],
+    .dataframe {
+        border: 2px solid var(--border-color) !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
     }
 
-    /* Info/Warning/Success框 - 几何色块 */
+    /* ============ Alert框 ============ */
     .stAlert {
-        border-radius: 2px;
-        border-left: 6px solid;
+        border-radius: 0 !important;
+        border-left: 6px solid !important;
+        padding: 1rem 1.5rem !important;
+        background-color: var(--bg-white) !important;
     }
 
-    /* 分割线 */
+    /* ============ 分割线 ============ */
     hr {
-        border: none;
-        border-top: 2px solid var(--border-color);
-        margin: 2rem 0;
+        border: none !important;
+        border-top: 3px solid var(--primary-color) !important;
+        margin: 3rem 0 !important;
+        opacity: 0.3 !important;
     }
 
-    /* Tab样式 */
+    /* ============ Tabs ============ */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 0;
-        background-color: white;
-        border-bottom: 2px solid var(--border-color);
+        gap: 0 !important;
+        background-color: transparent !important;
+        border-bottom: 3px solid var(--border-color) !important;
     }
 
     .stTabs [data-baseweb="tab"] {
-        background-color: transparent;
-        border-radius: 0;
-        padding: 1rem 2rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        border-bottom: 4px solid transparent;
+        background-color: transparent !important;
+        border-radius: 0 !important;
+        padding: 1rem 2rem !important;
+        font-weight: 600 !important;
+        color: var(--text-light) !important;
+        border-bottom: 3px solid transparent !important;
+        margin-bottom: -3px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .stTabs [data-baseweb="tab"]:hover {
+        color: var(--primary-color) !important;
     }
 
     .stTabs [aria-selected="true"] {
-        background-color: transparent;
-        border-bottom: 4px solid var(--primary-color);
-        color: var(--primary-color);
+        background-color: transparent !important;
+        border-bottom: 3px solid var(--primary-color) !important;
+        color: var(--primary-color) !important;
     }
 
-    /* 徽章样式 */
-    .stBadge {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 2px;
-        font-size: 0.85rem;
-        font-weight: 600;
+    /* ============ 图表 ============ */
+    [data-testid="stPlotlyChart"] > div {
+        background-color: var(--bg-white) !important;
+        padding: 1.5rem !important;
+        border: 2px solid var(--border-color) !important;
+        box-shadow: var(--shadow) !important;
     }
 
-    /* 去除多余装饰 */
-    [data-testid="stHeader"] {
-        background-color: transparent;
-    }
-
-    /* 图表容器 */
-    [data-testid="stPlotlyChart"] {
-        background-color: white;
-        padding: 1rem;
-        border-radius: 2px;
-        border: 1px solid var(--border-color);
-    }
+    /* ============ 隐藏Streamlit水印 ============ */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
